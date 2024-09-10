@@ -24,7 +24,7 @@ public class ResponseBuilder {
 
     public String buildSuccessResponse(RequestData data, boolean flag) {
         String content = String.format(Locale.US, "{\"x\": %.3f, \"y\": %d, \"r\": %d, \"flag\": %s}",
-                data.getX(), data.getY(), data.getR(), Boolean.toString(flag));
+                data.getX(), data.getY(), data.getR(), flag);
         return HTTP_RESPONSE_OK.formatted(content.getBytes(StandardCharsets.UTF_8).length, content);
     }
 
