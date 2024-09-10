@@ -2,12 +2,14 @@
     --primary-border-radius: 10px;
     --primary-text-color: #bac3cb;
     --secondary-text-color: #a3abb1;
+    --dimmed-secondary-text-color: #a3abb1ab;
     --error-color: #f54c45;
     --primary-background-color: #0c1116;
     --secondary-background-color: #161a23;
     --tertiary-background-color: #202330;
     --soft-borders-color: #1e232f;
     --default-borders-radius: 10px;
+    --table-border-color: #2f394b;
 
     background-color: var(--primary-background-color);
 }
@@ -130,19 +132,38 @@ button:disabled {
 }
 
 
-table,
-th,
-td {
-    color: var(--primary-text-color);
-    border: 1px solid var(--primary-text-color);
+.testing-times {
+    color: var(--dimmed-secondary-text-color);
 }
-
 
 #dataTable {
-    align-items: stretch;
     margin: 3%;
+    width: 90%;
+    max-width: 600px; 
+    border-collapse: collapse; 
+    border: 4px double var(--table-border-color); 
+    overflow: hidden; 
 }
 
-.testing-times {
-    color: var(--secondary-text-color);
+#dataTable th, 
+#dataTable td {
+    padding: 8px 12px; 
+    text-align: center; 
+    border: 2px solid var(--table-border-color);
+    color: var(--secondary-text-color); 
 }
+
+#dataTable th {
+    background-color: var(--secondary-background-color); 
+    color: var(--primary-text-color);
+}
+
+
+#dataTable tr:nth-child(even) {
+    background-color: var(--tertiary-background-color);
+}
+
+#dataTable tr:nth-child(odd) {
+    background-color: var(--secondary-background-color);
+}
+
