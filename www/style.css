@@ -96,6 +96,10 @@ button:hover {
 
 }
 
+button:disabled {
+    background-color: var(--primary-background-color);
+}
+
 
 #graphBlock {
     align-items: center;
@@ -116,9 +120,12 @@ button:hover {
 
 }
 
+#datetime {
+    font-family: 'Courier New', Courier, monospace;
+}
 
 #errorMessage {
-    visibility: hidden;
+    visibility: visible;
     color: var(--error-color);
 }
 
@@ -134,4 +141,8 @@ td {
 #dataTable {
     align-items: stretch;
     margin: 3%;
+}
+
+.testing-times {
+    color: var(--secondary-text-color);
 }

@@ -4,7 +4,11 @@ import data.RequestData;
 import data.ResponseBuilder;
 import exceptions.InvalidRequestException;
 
+import java.time.ZoneId;
+import java.time.ZonedDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.Properties;
+import java.util.concurrent.TimeUnit;
 
 public class RequestHandler {
     private final RequestParser requestParser = new RequestParser();
@@ -29,9 +33,14 @@ public class RequestHandler {
 
     private void handlePostRequest(String queryString) {
         try {
+            long start = System.nanoTime();
             RequestData requestData = requestParser.parseQuery(queryString);
             boolean flag = GeometryValidator.isInsideArea(requestData.getX(), requestData.getY(), requestData.getR());
-            String response = responseBuilder.buildSuccessResponse(requestData, flag);
+            long end = System.nanoTime();
+            long elapsed= TimeUnit.NANOSECONDS.toMillis(end - start);
+            DateTimeFormatter customFormatter = DateTimeFormatter.ofPattern("hh:mm:ss.SSSXXX");
+            String formattedDateCustom = ZonedDateTime.now().format(customFormatter);
+            String response = responseBuilder.buildSuccessResponse(requestData, flag, elapsed, formattedDateCustom);
             System.out.println(response);
         } catch (InvalidRequestException e) {
             System.out.println(responseBuilder.buildErrorResponse("Invalid request data."));

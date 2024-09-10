@@ -14,6 +14,7 @@
     <!-- Header -->
     <div id="header-plate" class="box">
         <h1>Тынкевич Валерий Николаевич P3215</h1>
+        <span id="datetime"> </span>
     </div>
 
 
@@ -78,7 +79,7 @@
                 </div>
             </div>
             <div>
-                <button id="submitButton">Submit</button>
+                <button id="submitButton" disabled>Submit</button>
             </div>
             <table id="dataTable">
                 <thead>
@@ -99,10 +100,12 @@
         </div>
         <div id="graphBlock">
             <img id="graph" src="/resources/graph.svg" width="600" height="400">
-            <p id="errorMessage">Error</p>
+            <p id="errorMessage"></p>
+            <p class="testing-times" id="latestTime"></p>
+            <p class="testing-times" id="scriptTime"></p>
+            <p class="testing-times" id="serverTime"></p>
         </div>
     </div>
-    <script src="validate.js"></script>
     <script src="script.js"></script>
 </body>
 

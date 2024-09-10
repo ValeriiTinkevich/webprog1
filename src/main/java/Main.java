@@ -2,8 +2,12 @@
 import com.fastcgi.FCGIInterface;
 import handlers.RequestHandler;
 
+import java.time.ZonedDateTime;
+import java.time.format.DateTimeFormatter;
+
 public class Main {
     public static void main(String[] args) {
+
         FCGIInterface intf = new FCGIInterface();
         RequestHandler requestHandler = new RequestHandler();
 

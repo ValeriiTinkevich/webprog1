@@ -1,6 +1,7 @@
 package data;
 
 import java.nio.charset.StandardCharsets;
+import java.time.ZonedDateTime;
 import java.util.Locale;
 
 public class ResponseBuilder {
@@ -22,9 +23,9 @@ public class ResponseBuilder {
 
     private static final String CONTENT_ERROR = "{\"Error\": %s}";
 
-    public String buildSuccessResponse(RequestData data, boolean flag) {
-        String content = String.format(Locale.US, "{\"x\": %.3f, \"y\": %d, \"r\": %d, \"flag\": %s}",
-                data.getX(), data.getY(), data.getR(), flag);
+    public String buildSuccessResponse(RequestData data, boolean flag, long elapsedTime, String serverTime) {
+        String content = String.format(Locale.US, "{\"x\": %.3f, \"y\": %d, \"r\": %d, \"flag\": %s, \"script_time\": \"%s ms\", \"server_time\": \"%s\"}",
+                data.getX(), data.getY(), data.getR(), flag, elapsedTime, serverTime);
         return HTTP_RESPONSE_OK.formatted(content.getBytes(StandardCharsets.UTF_8).length, content);
     }
 
