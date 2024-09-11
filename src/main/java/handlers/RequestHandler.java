@@ -1,18 +1,18 @@
 package handlers;
 
 import data.RequestData;
+import data.ResponseHistoryManager;
 import data.ResponseBuilder;
 import exceptions.InvalidRequestException;
 
-import java.time.ZoneId;
 import java.time.ZonedDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.Properties;
-import java.util.concurrent.TimeUnit;
 
 public class RequestHandler {
     private final RequestParser requestParser = new RequestParser();
     private final ResponseBuilder responseBuilder = new ResponseBuilder();
+    private final ResponseHistoryManager responseHistoryManager = ResponseHistoryManager.getInstance();
 
     public void handleRequest(Properties params) {
         if (params == null) {
@@ -37,10 +37,11 @@ public class RequestHandler {
             RequestData requestData = requestParser.parseQuery(queryString);
             boolean flag = GeometryValidator.isInsideArea(requestData.getX(), requestData.getY(), requestData.getR());
             long end = System.nanoTime();
-            long elapsed= TimeUnit.NANOSECONDS.toMillis(end - start);
+            long elapsed= end - start;
             DateTimeFormatter customFormatter = DateTimeFormatter.ofPattern("hh:mm:ss.SSSXXX");
             String formattedDateCustom = ZonedDateTime.now().format(customFormatter);
             String response = responseBuilder.buildSuccessResponse(requestData, flag, elapsed, formattedDateCustom);
+            responseHistoryManager.addRequest(responseBuilder.buildJson(requestData, flag, elapsed, formattedDateCustom));
             System.out.println(response);
         } catch (InvalidRequestException e) {
             System.out.println(responseBuilder.buildErrorResponse("Invalid request data."));
@@ -48,7 +49,7 @@ public class RequestHandler {
     }
 
     private void handleGetRequest(String queryString) {
-        System.out.println("GET request received with query: " + queryString);
+        System.out.println(responseBuilder.buildHistoryResponse(responseHistoryManager.getRequestHistoryJSON()));
     }
 
     private void handlePutRequest(String queryString) {
