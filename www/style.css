@@ -91,6 +91,7 @@ button {
     border-radius: var(--primary-border-radius);
     border: 2px solid var(--soft-borders-color);
     cursor: pointer;
+    transition: background-color 0.3s;
 }
 
 button:hover {
@@ -122,6 +123,10 @@ button:disabled {
 
 }
 
+#datetimelabel {
+    font-family: 'Courier New', Courier, monospace
+}
+
 #datetime {
     font-family: 'Courier New', Courier, monospace;
 }
@@ -139,22 +144,22 @@ button:disabled {
 #dataTable {
     margin: 3%;
     width: 90%;
-    max-width: 600px; 
-    border-collapse: collapse; 
-    border: 4px double var(--table-border-color); 
-    overflow: hidden; 
+    max-width: 600px;
+    border-collapse: collapse;
+    border: 4px double var(--table-border-color);
+    overflow: hidden;
 }
 
-#dataTable th, 
+#dataTable th,
 #dataTable td {
-    padding: 8px 12px; 
-    text-align: center; 
+    padding: 8px 12px;
+    text-align: center;
     border: 2px solid var(--table-border-color);
-    color: var(--secondary-text-color); 
+    color: var(--secondary-text-color);
 }
 
 #dataTable th {
-    background-color: var(--secondary-background-color); 
+    background-color: var(--secondary-background-color);
     color: var(--primary-text-color);
 }
 
@@ -166,4 +171,3 @@ button:disabled {
 #dataTable tr:nth-child(odd) {
     background-color: var(--secondary-background-color);
 }
-
