@@ -29,6 +29,6 @@ java -DFCGI_PORT=\<port\> -jar hello-world.jar
 
 Код в репозитории чисто для референса, обновлять его не буду, но в целом это готовая лабораторка которой не хватает твиков по типу нормальных стилей итд, использовал jquery для отправки запроса
 
-<mark style="background: #FFB8EBA6;">Всем удачи</mark>
+<mark style="background: #FFC0CB;">Всем удачи</mark>
 
 ![kitty](https://i.ytimg.com/vi/XixMjj1rgMU/maxresdefault.jpg)
